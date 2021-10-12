@@ -1,0 +1,81 @@
+// Add your own code here!
+// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
+// Some examples can be found here: https://bootscore.me/documentation/bootstrap-css-sass
+
+/*-----------------------------------------------------------------------------
+
+  ATTENTION! This is the parent-theme's file. Your work will be lost by the 
+  next update!
+
+  Wouldn't you prefer to use one of our child themes and be update-safe?
+
+  bootscore-child: 
+  https://github.com/bootscore/bootscore-child/archive/refs/heads/main.zip
+
+  bootcommerce-child:
+  https://github.com/bootscore/bootcommerce-child/archive/refs/heads/main.zip
+
+-----------------------------------------------------------------------------*/
+/* raleway-regular - latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/raleway-v22-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../../fonts/raleway-v22-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../fonts/raleway-v22-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../fonts/raleway-v22-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../../fonts/raleway-v22-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../fonts/raleway-v22-latin-regular.svg#Raleway') format('svg'); /* Legacy iOS */
+}
+/* raleway-700 - latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/raleway-v22-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../../fonts/raleway-v22-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../fonts/raleway-v22-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../fonts/raleway-v22-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../../fonts/raleway-v22-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../fonts/raleway-v22-latin-700.svg#Raleway') format('svg'); /* Legacy iOS */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  // Use flex for alignment (1-3)
+  display: flex; // 1. allow flex styles
+  align-items: center; // 2. vertically center contents
+  justify-content: center; // 3. horizontally center contents
+  width: $carousel-control-width;
+  padding: 0;
+  color: $carousel-control-color;
+  text-align: center;
+  background: none;
+  border: 0;
+  opacity: $carousel-control-opacity;
+  @include transition($carousel-control-transition);
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: $carousel-control-color;
+    text-decoration: none;
+    outline: 0;
+    opacity: $carousel-control-hover-opacity;
+  }
+}
+
+a{
+	color:#E9B886;
+}
+
+.nav-link{
+	color:#E9B886;
+}
