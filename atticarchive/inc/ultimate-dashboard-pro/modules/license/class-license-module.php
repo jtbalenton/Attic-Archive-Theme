@@ -61,12 +61,7 @@ class License_Module extends Base_Module {
 	 */
 	public function setup() {
 
-		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
-		add_action( 'admin_notices', array( $this, 'license_notice' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-
-		require_once __DIR__ . '/edd/license.php';
-
+		
 	}
 
 	/**

@@ -211,9 +211,9 @@ if ( !function_exists( 'bootscore_post_thumbnail' ) ):
    */
   function bootscore_post_thumbnail() {
     if ( has_post_thumbnail() ):
-      echo '<div class="mb-2">' . get_the_post_thumbnail( null, 'medium' ) . '</div>';
-    else :
-      echo '<img src="echo get_theme_file_uri(); /img/no-photo-icon.png" class="rounded mb-3 img-fluid">';
+      echo '<div class="mb-2  align-self-center">' . get_the_post_thumbnail( null, 'medium' ) . '</div>';
+    else :?>
+        <img src="<?php echo get_theme_file_uri(); ?> /img/no-photo-icon.png" class="rounded mb-3 img-fluid"><?php
     endif;
 
 

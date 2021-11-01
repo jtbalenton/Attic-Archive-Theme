@@ -1,33 +1,7 @@
 <?php
 
-define( 'MY_PLUGIN_URL', WP_CONTENT_URL . '/themes/atticarchive/inc' );
-define( 'MY_THEME_URL', WP_CONTENT_URL . '/themes/atticarchive' );
-
-define( 'MY_ACF_PATH', get_stylesheet_directory() . '/inc/acf/' );
-define( 'MY_ACF_URL', get_stylesheet_directory_uri() . '/inc/acf/' );
-include_once( MY_ACF_PATH . 'acf.php' );
-
-// Include the ACFE plugin.
-define( 'ACFE_PATH', get_stylesheet_directory() . '/inc/acfe/' );
-define( 'ACFE_URL', get_stylesheet_directory_uri() . '/inc/acfe/' );
-include_once( ACFE_PATH . 'acfe.php' );
-
-
-
-//ACF Frontent Form Extensisons
-define( 'ACF_Extensions', get_stylesheet_directory() . '/inc/acf-extensions/' );
-//include_once( ACF_Extensions . 'acf-frontend.php' );
-
-//Ultimate Dashboard Free then Pro
-define( 'ULTIMATE_DASHBOARD_PATH', get_stylesheet_directory() . '/inc/ultimate-dashboard/' );
-require_once( ULTIMATE_DASHBOARD_PATH . 'dashboard.php' );
-define( 'ULTIMATE_DASHBOARD_PRO_PATH', get_stylesheet_directory() . '/inc/ultimate-dashboard-pro/' );
-require_once( ULTIMATE_DASHBOARD_PRO_PATH . 'dashboard-pro.php' );
-
-//Search Filter Pro    
-define( 'SFP_PATH', get_stylesheet_directory() . '/inc/Search_Filter/' );
-require_once( SFP_PATH . 'sfp.php' );
-
+define( 'MY_PLUGIN_URL', get_template_directory_uri() .'/inc' );
+define ('MY_PLUGIN_PATH', get_template_directory() .'/inc' );
 
 
 function my_plugins_dir_url( $file ) {
@@ -73,6 +47,43 @@ function my_plugins_url( $path = '', $plugin = '' ) {
   return apply_filters( 'my_plugins_url', $url, $path, $plugin );
 }
 
+
+
+define( 'MY_ACF_PATH',  get_template_directory() . '/inc/acf/');
+define( 'MY_ACF_URL',  get_template_directory_uri()  . '/inc/acf/');
+include_once( MY_ACF_PATH . 'acf.php' );
+
+// Include the ACFE plugin.
+define( 'ACFE_PATH',  get_template_directory().'/inc/acfe/');
+define( 'ACFE_URL',  get_template_directory_uri().'/inc/acfe/' );
+include_once( ACFE_PATH . 'acfe.php' );
+
+
+
+//ACF Frontent Form Extensisons
+define( 'ACF_Extensions01',get_template_directory() . '/inc/acf-frontend-form/');
+define( 'ACF_Extensions02',get_template_directory() . '/inc/acf-extensions/');
+//require_once( ACF_Extensions01 . 'acf-frontend.php' );
+require_once( ACF_Extensions02 . 'acf-frontend.php' );
+
+//Ultimate Dashboard Free then Pro
+define( 'ULTIMATE_DASHBOARD_PATH', get_template_directory() . '/inc/ultimate-dashboard/' );
+require_once( ULTIMATE_DASHBOARD_PATH . 'dashboard.php' );
+define( 'ULTIMATE_DASHBOARD_PRO_PATH',  get_template_directory() . '/inc/ultimate-dashboard-pro/');
+require_once( ULTIMATE_DASHBOARD_PRO_PATH . 'dashboard-pro.php' );
+
+//Search Filter Pro    
+define( 'SFP_PATH',  get_template_directory()  . '/inc/Search_Filter/');
+include ( SFP_PATH . 'sfp.php' );
+
+
+//LoginPress
+define( 'MY_LOGINPRESS_PATH',  get_template_directory() . '/inc/loginpress/');
+require_once(MY_LOGINPRESS_PATH . 'loginpress.php');
+
+//SWIPER Addon 
+define( 'BS_SWIPER_PATH', get_template_directory() . '/inc/bs-swiper/' );
+require_once (BS_SWIPER_PATH . 'main.php');
 
 // Customize the url setting to fix incorrect asset URLs.
 add_filter( 'acf/settings/url', 'my_acf_settings_url' );
@@ -135,7 +146,7 @@ function show_wp_menu_function( $atts, $content = null ) {
 
 
 
-//add_action( 'acf/save_post', 'custom_photo_date' );
+
 
 function custom_photo_date( $post_id ) {
   // Get newly saved values.
@@ -152,7 +163,7 @@ function custom_photo_date( $post_id ) {
   }
 }
 
-//add_action( 'acf/save_post', 'my_acf_save_custom_date' );
+add_action( 'acf/save_post', 'my_acf_save_custom_date' );
 
 function my_acf_save_custom_date( $post_id ) {
   // Get newly saved values.
@@ -172,3 +183,95 @@ function my_acf_save_custom_date( $post_id ) {
   
 }
 
+add_action( 'acf/save_post', 'custom_photo_date' );
+
+/**
+ * Register menu page for Materials.
+ */
+$menu_slug = 'materials';
+add_menu_page( 'Memories', 'Materials', 'read', $menu_slug, false,'','9');
+add_submenu_page( $menu_slug, 'Existing WP Docs Orders', 'Main', 'read', $menu_slug, 'materials_function' );
+
+function materials_function(){
+	include MY_PLUGIN_PATH . '/admin/admin.php';
+}
+
+function add_themefeatures_page( $page_title, $menu_title, $capability, $menu_slug, $function = '', $position = null ) {
+    return add_submenu_page( 'edit.php?post_type=udb_widgets', $page_title, $menu_title, $capability, $menu_slug, $function, $position );
+}
+ 
+ /**
+       * Get local templates.
+       *
+       * Retrieve local templates saved by the user on his site.
+       *
+       * @since 1.0.0
+       * @access public
+       *
+       * @param array $args Optional. Filter templates based on a set of
+       *                    arguments. Default is an empty array.
+       *
+       * @return array Local templates.
+       */
+     function get_items() {
+     
+        $args = [
+          'post_type' => 'acfe-form',
+          'post_status' => 'publish',
+          'posts_per_page' => -1,
+          'orderby' => 'title',
+          'order' => 'ASC',
+
+        ];
+
+
+        $forms = get_posts( $args );
+        $templates = [];
+
+        if ( $forms ):
+          foreach ( $forms as $form ):
+            $templates[] = get_item( $form->ID );
+        endforeach;
+
+        endif;
+
+        return $templates;
+      }
+      /**
+       * Get local template.
+       *
+       * Retrieve a single local template saved by the user on his site.
+       *
+       * @since 1.0.0
+       * @access public
+       *
+       * @param int $template_id The template ID.
+       *
+       * @return array Local template.
+       */
+      function get_item( $template_id ) {
+        $post = get_post( $template_id );
+        $user = get_user_by( 'id', $post->post_author );
+        $date = strtotime( $post->post_date );
+
+        $data = [
+          'template_id' => $post->ID,
+          /*'source' => get_id(),*/
+          'title' => $post->post_title,
+          'thumbnail' => get_the_post_thumbnail_url( $post ),
+          'date' => $date,
+          'human_date' => date_i18n( get_option( 'date_format' ), $date ),
+          'human_modified_date' => date_i18n( get_option( 'date_format' ), strtotime( $post->post_modified ) ),
+          'author' => $user->display_name,
+          'status' => $post->post_status,
+          'tags' => [],
+          'url' => get_permalink( $post->ID ),
+        ];
+
+      
+        return $data;
+      }
+
+
+
+ 

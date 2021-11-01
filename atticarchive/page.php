@@ -28,11 +28,9 @@ get_header();
         <main id="main" class="site-main">
 
           <header class="entry-header">
-            <?php the_post(); ?>
-            <!-- Title -->
-            <?php the_title('<h1>', '</h1>'); ?>
+      
             <!-- Featured Image-->
-            <?php bootscore_post_thumbnail(); ?>
+        
             <!-- .entry-header -->
           </header>
 

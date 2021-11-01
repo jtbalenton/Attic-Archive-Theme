@@ -87,7 +87,7 @@ class Login_Customizer_Module extends Base_Module {
 	 */
 	public function preview_scripts() {
 
-		wp_enqueue_script( 'udb-pro-login-customizer-preview', $this->url . '/assets/js/preview.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-pro-login-customizer-preview', $this->url .'/assets/js/preview.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );
 
 	}
 

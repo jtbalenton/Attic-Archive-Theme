@@ -251,10 +251,7 @@ class Admin_Page_Module extends Base_Module {
 		add_meta_box( 'udb-active-status-metabox', __( 'Active', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_admin_page', 'side', 'high' );
 		add_meta_box( 'udb-content-type-metabox', __( 'Content Type', 'ultimate-dashboard' ), array( $this, 'content_type_metabox' ), 'udb_admin_page', 'side', 'high' );
 
-		if ( ! udb_is_pro_active() ) {
-			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_admin_page', 'side', 'high' );
-		}
-
+	
 		add_meta_box( 'udb-menu-metabox', __( 'Menu Attributes', 'ultimate-dashboard' ), array( $this, 'menu_metabox' ), 'udb_admin_page', 'side' );
 
 		add_meta_box( 'udb-html-metabox', __( 'HTML', 'ultimate-dashboard' ), array( $this, 'html_metabox' ), 'udb_admin_page', 'normal', 'high' );

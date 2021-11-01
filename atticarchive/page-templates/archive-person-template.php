@@ -15,7 +15,6 @@
      * @package Bootscore
      */
     
-
 get_header();
 ?>
 <div id="content" class="site-content container py-5 mt-5">
@@ -44,46 +43,75 @@ get_header();
           <div class="card-body">
             <div class="row mb-4">
               <div class="col-sm-3">
-                <?php
-                if ( has_post_thumbnail() ):
-                  echo '<div class="">' . get_the_post_thumbnail( null, 'thumbnail' ) . '</div>';
-                ?>
-                <?php else :  ?>
-                <img src="<?php echo get_theme_file_uri(); ?> /img/no-photo-icon.png" class="rounded mb-3 img-fluid">
-                <?php endif;?>
+                <div class="w-50">
+                  <?php
+                  if ( has_post_thumbnail() ):
+                    echo '<div class="">' . get_the_post_thumbnail( null, 'medium' ) . '</div>';
+                  ?>
+                  <?php else :  ?>
+                  <img src="<?php echo get_theme_file_uri(); ?> /img/no-photo-icon.png" class="rounded mb-3 img-fluid">
+                  <?php endif;?>
+                </div>
               </div>
               <div class="col-sm-9">
                 <div class="d-flex justify-content-around">
-                  <div class="p-2">
-                    <h5 class="card-title">Born</h5>
-                    <?php
-                    $person_born = get_field( 'person_birth' );
-                    if ( $person_born ): ?>
-                    <?php foreach( $person_born as $post) : ?>
-                    <?php setup_postdata( $post ); ?>
-                    <?php if ( $event_date = get_field( 'event_date' ) ) : ?>
-                    <?php echo esc_html( $event_date ); ?>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                    <?php wp_reset_postdata(); ?>
-                    <?php endif; ?>
+                  <div class="text-center">
+                    <div class="d-grid">
+                      <h5 class="h6">Born</h5>
+                      <?php
+                      $birth_date = get_field( 'person_birth' );
+                      if ( $birth_date ): 
+						
+						?>
+                      <?php
+                      foreach ( $birth_date as $birth_day ):
+                        $birthdate = get_field( 'event_date', $birth_day->ID );
+					    $event_place = get_field( 'event_city', $birth_day->ID );
+                      ?>
+                      <div class=""> <?php echo $birthdate; ?> </div>
+                      <?php endforeach; ?>
+                      <?php else: ?>
+                      <p class="text-center">Unknown</p>
+                      <?php
+                      endif;
+                      if ( $event_place ):
+                        foreach ( $event_place as $eventplace ):
+                          $title = get_the_title( $eventplace->ID );
+                      ?>
+                      <div class=""><?php echo $title; ?></div>
+                      <?php endforeach; else:?>
+                      <p class="text-center">?</p>
+                      <?php endif; ?>
+                    </div>
                   </div>
-                  <div class="p-2">
-                    <h5 class="card-title">Died</h5>
+                  <div class="text-center d-grid">
+                    <h5 class="h6">Died</h5>
                     <?php
-                    $person_died = get_field( 'person_death' );
-                    if ( $person_died ): ?>
-                    <?php foreach( $person_died as $post) : ?>
-                    <?php setup_postdata( $post ); ?>
-                    <?php if ( $event_date = get_field( 'event_date' ) ) : ?>
-                    <?php echo esc_html( $event_date ); ?>
-                    <?php endif; ?>
+                    $death_date = get_field( 'person_death' );
+                    if ( $death_date ): ?>
+                    <?php
+                    foreach ( $death_date as $death_day ):
+                      $deathdate = get_field( 'event_date', $death_day->ID );
+					  $death_place = get_field( 'event_city', $death_day->ID );
+                    ?>
+                    <div class=""> <?php echo $deathdate; ?> </div>
                     <?php endforeach; ?>
-                    <?php wp_reset_postdata(); ?>
-                    <?php endif; ?>
-                  </div>
-                  <div class="p-2">
-                    <h5 class="card-title">Generation</h5>
+                    <?php else: ?>
+                    <p class="text-center">Unknown</p>
+                    <?php endif;
+					  if ( $death_place ):
+                        foreach ( $death_place as $eventplace ):
+                          $title = get_the_title( $eventplace->ID );
+					  ?>
+					   <div class=""><?php echo $title; ?></div>
+                      <?php endforeach; else:?>
+                      <p class="text-center">?</p>
+                      <?php endif; ?>
+                    </div>
+                  
+                 
+                  <div class="text-center">
+                    <h5 class="h6">Generation</h5>
                     <?php
                     $term = get_field( 'person_generation' );
                     if ( $term ): ?>
@@ -99,7 +127,7 @@ get_header();
                 if ( $terms ): ?>
                 <ul class="nav justify-content-center">
                   <?php foreach( $terms as $term ): ?>
-                  <li class="nav-item border-end border-warning"><a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="nav-link link-warning"><?php echo esc_html( $term->name ); ?></a></li>
+                  <li class="nav-item border-end border-warning"><a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="nav-link"><?php echo esc_html( $term->name ); ?></a></li>
                   <?php endforeach; ?>
                 </ul>
                 <?php endif; ?>
@@ -118,71 +146,11 @@ get_header();
                         <div class="modal-body">
                           <div class="container-fluid">
                             <p class="text-center">Parents</p>
-                            <div class="d-flex justify-content-center">
-                              <?php
-                              $parents = get_field( 'person_parents' );
-                              if ( $parents ): ?>
-                              <?php
-                              foreach ( $parents as $post ):
-                                // Setup this post for WP functions (variable must be named $post).
-                                setup_postdata( $post );
-                              ?>
-                              <div class="p-2"> <a href="<?php the_permalink(); ?>">
-                                <button type="button" class="btn btn-secondary btn-sm">
-                                <?php the_title(); ?>
-                                </button>
-                                </a> </div>
-                              <?php endforeach; ?>
-                              <?php
-                              // Reset the global post object so that the rest of the page works correctly.
-                              wp_reset_postdata();
-                              ?>
-                              <?php endif; ?>
-                            </div>
+                            <div class="row row-cols-2 mb-2"> </div>
                             <p class="text-center">Siblings</p>
-                            <div class="d-flex justify-content-evenly">
-                              <?php
-                              $siblings = get_field( 'person_siblings' );
-                              if ( $siblings ): ?>
-                              <?php
-                              foreach ( $siblings as $post ):
-                                // Setup this post for WP functions (variable must be named $post).
-                                setup_postdata( $post );
-                              ?>
-                              <div class="p-2"> <a href="<?php the_permalink(); ?>">
-                                <button type="button" class="btn btn-secondary btn-sm">
-                                <?php the_title(); ?>
-                                </button>
-                                </a> </div>
-                              <?php endforeach; ?>
-                              <?php
-                              // Reset the global post object so that the rest of the page works correctly.
-                              wp_reset_postdata();
-                              ?>
-                              <?php endif; ?>
-                            </div>
+                            <div class="row row-cols-4 mb-2 d-flex justify-content-evenly"> > </div>
                             <p class="text-center">Children</p>
-                            <div class="d-flex justify-content-evenly">
-                              <?php
-                              $children = get_field( 'person_children' );
-                              if ( $children ): ?>
-                              <?php
-                              foreach ( $children as $post ):
-                                // Setup this post for WP functions (variable must be named $post).
-                                setup_postdata( $post );
-                              ?>
-                              <div class="p-2"> <a href="<?php the_permalink(); ?>">
-                                <button type="button" class="btn btn-secondary btn-sm">
-                                <?php the_title(); ?>
-                                </button>
-                                </a> </div>
-                              <?php endforeach; ?>
-                              <?php
-                              // Reset the global post object so that the rest of the page works correctly.
-                              wp_reset_postdata();
-                              ?>
-                              <?php endif; ?>
-                            </div>
+                            <div class="row row-cols-4 mb-2 d-flex justify-content-evenly"> </div>
                           </div>
                         </div>
                       </div>

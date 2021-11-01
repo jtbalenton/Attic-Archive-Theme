@@ -4,36 +4,57 @@
     <div class="col-sm-12 col-md-10">
       <div class="row">
         <div class="col">
-			
+          <?php /* $dir =get_theme_file_uri('inc/loginpress'); var_dump($dir); */?>
           <?php the_content(); ?>
         </div>
       </div>
       <div class="row mb-4">
         <div class="col-sm-7">
-          <div class="d-grid gap-3">
-			<p class="h4 text-center p-2">New Blog Posts</p>
-          <?php get_template_part( 'template-parts/components/post', 'carousel' ); ?>
+          <div class="d-grid gap-3 mw-50">
+            <p class="h4 text-center p-2">New Blog Posts</p>
+            <?php get_template_part( 'template-parts/components/post', 'carousel' ); ?>
+          </div>
         </div>
-		  </div>
         <div class="text-center align-self-center col-sm-5">
           <div class="">
             <p class="h5">Updates are brief messages from the administrator of the site.  They can be notes about what’s new on the site, requests for info about a person or material in the archive, or anything really.</p>
             <a href="#"  class="btn btn-warning text-white mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> View Updates</a> </div>
         </div>
-        
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Updates</h5>
+            
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body"> ... </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+              <div class="modal-body">
+				  
+                <?php $args = array( 'post_type' => 'update' ); ?>
+
+               <?php $updates = get_posts( $args ); ?>
+
+               <?php if ( $updates ):?>
+                <?php  foreach ( $updates as $update ): ?>
+                <?php $title = $update->post_title; ?>
+                <?php $content= $update->post_content; ?>
+                <div class="card">
+					<h5 class="card-header bg-warning text-white">
+				    <?php echo $title ?>
+					</h5>
+				  <div class="card-body">
+					  <?php echo $content; ?>
+					</div>
+				  </div>
+				 
+				  <?php endforeach; ?>
+				
+				  <?php else: echo 'No Updates';?>
+				
+                <?php endif; ?>
+				
               </div>
+             
             </div>
           </div>
         </div>

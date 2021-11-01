@@ -57,7 +57,7 @@ class Login_Customizer_Module extends Base_Module {
 	 */
 	public function setup() {
 
-		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
+		//add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 
 		// Create custom page (custom rewrite, not a real page).
 		add_action( 'init', array( $this, 'rewrite_tags' ) );
@@ -69,9 +69,9 @@ class Login_Customizer_Module extends Base_Module {
 		add_action( 'admin_init', array( $this, 'redirect_edit_page' ) );
 
 		// Setup customizer.
-		add_action( 'customize_register', array( $this, 'register_panels' ) );
-		add_action( 'customize_register', array( $this, 'register_sections' ) );
-		add_action( 'customize_register', array( $this, 'register_controls' ) );
+		//add_action( 'customize_register', array( $this, 'register_panels' ) );
+		//add_action( 'customize_register', array( $this, 'register_sections' ) );
+		//add_action( 'customize_register', array( $this, 'register_controls' ) );
 
 		// Enqueue assets.
 		add_action( 'customize_controls_print_styles', array( $this, 'control_styles' ), 99 );
@@ -103,7 +103,7 @@ class Login_Customizer_Module extends Base_Module {
 		array_push(
 			$submenu[ $udb_slug ],
 			array(
-				__( 'Login Customizer', 'ultimate-dashboard' ),
+				__( 'Login Customizer Beta', 'ultimate-dashboard' ),
 				apply_filters( 'udb_settings_capability', 'manage_options' ),
 				esc_url( admin_url( 'customize.php?autofocus%5Bpanel%5D=udb_login_customizer_panel' ) ),
 			)

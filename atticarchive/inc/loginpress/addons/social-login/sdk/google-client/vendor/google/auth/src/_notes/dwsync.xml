@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AccessToken.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="ApplicationDefaultCredentials.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="CacheTrait.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="CredentialsLoader.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="FetchAuthTokenCache.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="FetchAuthTokenInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="GetQuotaProjectInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="Iam.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="OAuth2.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="ProjectIdProviderInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="ServiceAccountSignerTrait.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+<file name="SignBlobInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754821000000000" remote="132754821000000000" Dst="2" />
+</dwsync>

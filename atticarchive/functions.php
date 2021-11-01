@@ -397,7 +397,7 @@ if (!function_exists('the_breadcrumb')) :
   function the_breadcrumb() {
     if (!is_home()) {
       echo '<nav class="breadcrumb mb-4 mt-2 bg-light py-2 px-3 small rounded">';
-      echo '<a href="' . home_url('/') . '">' . ('<i class="fas fa-home"></i>') . '</a><span class="divider">&nbsp;/&nbsp;</span>';
+      echo '<a href="' . home_url('/') . '">' . ('<i class="fas fa-home"></i>') . '</a>&nbsp;/&nbsp;</span>';
       if (is_category() || is_single()) {
         the_category(' <span class="divider">&nbsp;/&nbsp;</span> ');
         if (is_single()) {
@@ -406,7 +406,10 @@ if (!function_exists('the_breadcrumb')) :
         }
       } elseif (is_page()) {
         echo the_title();
-      }
+      }elseif(is_singular('person')){
+		 echo '<nav class="breadcrumb mb-4 mt-2 bg-light py-2 px-3 small rounded">';
+      echo '<a href="' . home_url('/') . '">'  . '</a><span>Person/&nbsp;</span>'; 
+	  }
       echo '</nav>';
     }
   }
@@ -546,5 +549,62 @@ return  ob_get_clean();
 
 add_shortcode( 'dashboard-posts', 'post_listing_parameters_shortcode' );
 
+remove_action('shutdown', 'wp_ob_end_flush_all', 1);
+
+//add_action('acf/input/admin_head', 'my_acf_admin_head');
+
+function my_acf_admin_head() {
+    
+    ?>
+    <script type="text/javascript">
+    (function($) {
+        
+        $(document).ready(function(){
+            
+            $('.acf-field-617141bc8cba5 .acf-input').append( $('#postdivrich') );
+            
+        });
+        
+    })(jQuery);    
+    </script>
+    <style type="text/css">
+        .acf-field #wp-content-editor-tools {
+            background: transparent;
+            padding-top: 0;
+        }
+    </style>
+    <?php    
+    
+}
+
+function wpdocs_post_image_html( $html, $post_id, $post_image_id ) {
+    $html = '<a href="' . get_permalink( $post_id ) . '" alt="' . esc_attr( get_the_title( $post_id ) ) . '">' . $html . '</a>';
+    return $html;
+}
+add_filter( 'post_thumbnail_html', 'wpdocs_post_image_html', 10, 3 );
 
 
+
+    
+function add_script_to_menu_page()
+{
+    // $pagenow, is a global variable referring to the filename of the current page, 
+    // such as ‘admin.php’, ‘post-new.php’
+    global $pagenow;
+ 
+    if ($pagenow != 'admin.php') {
+        return;
+    }
+     
+    // loading css
+wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/lib/bootstrap.min.css', array());
+
+    wp_enqueue_style( 'bootstrap' );
+     
+
+  // Bootstrap JS
+  wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/lib/bootstrap.bundle.min.js', array(), true);
+    wp_enqueue_script( 'bootstrap' );
+}
+ 
+add_action( 'admin_enqueue_scripts', 'add_script_to_menu_page' );

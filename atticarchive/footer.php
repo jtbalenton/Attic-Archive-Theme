@@ -21,7 +21,7 @@
 					 <p class="h6">&copy;&nbsp;<?php echo Date('Y'); ?> - Attic Archive</p> 
 				</div>
 				<div class="col">
-					<a href="<?php home_url('about');  ?>" class="btn btn-md">About Attic Archives</a>
+					<a href="<?php echo home_url('about');  ?>" class="btn btn-warning text-white btn-md">About Attic Archives</a>
 				</div>
 				<div class="col">
 					 <div class=" ms-2">
@@ -33,7 +33,7 @@
 				</div>
 				<div class="col">
 					<?php if ( is_user_logged_in() ) : ?>
-    					<a href="<?php echo wp_logout_url( home_url() ); ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    					<a href="<?php echo wp_logout_url( home_url('about') ); ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
 					<?php else : ?>
 						<a href="<?php echo esc_url( wp_login_url() ); ?>" alt="<?php esc_attr_e( 'Login', 'textdomain' ); ?>" class="btn btn-link btn-md link-warning" title="Members Area Login" rel="home"><i class="fas fa-sign-in-alt"></i> Log in</a>
 					<?php endif; ?>
@@ -52,7 +52,7 @@
 
 
 <div class="top-button position-fixed zi-1020">
-  <a href="#to-top" class="btn btn-primary shadow"><i class="fas fa-chevron-up"></i></a>
+  <a href="#to-top" class="btn btn-warning shadow"><i class="fas fa-chevron-up"></i></a>
 </div>
 
 </div><!-- #page -->

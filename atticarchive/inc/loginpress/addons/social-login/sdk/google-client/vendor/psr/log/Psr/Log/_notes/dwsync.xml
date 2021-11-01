@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractLogger.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="InvalidArgumentException.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="LoggerAwareInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="LoggerAwareTrait.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="LoggerInterface.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="LoggerTrait.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="LogLevel.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+<file name="NullLogger.php" server="nelsonfamilyvillage.com/public_html/wp-content/themes/bootscore/" local="132754823400000000" remote="132754823400000000" Dst="2" />
+</dwsync>

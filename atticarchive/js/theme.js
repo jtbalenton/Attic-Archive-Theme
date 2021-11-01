@@ -45,6 +45,48 @@ jQuery(function ($) {
   $('.top-nav-search input:first-of-type').focusout(function () {
     $('#collapse-search').collapse('hide');
   });
+	
+	// Active menu item workaround, check navwalker when ready
+    var url = window.location.pathname,
+        urlRegExp = new RegExp(url.replace(/\/$/, '') + "$"); // create regexp to match current url pathname and remove trailing slash if present as it could collide with the link in navigation in case trailing slash wasn't present there
+    // now grab every link from the navigation
+    $('.nav-link').each(function () {
+        // and test its normalized href against the url pathname regexp
+        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+            $(this).addClass('active');
+        }
+    });
+	
+	
+    // Remove active on frontpage
+    if ($('body.home').length) {
+        $('.nav-link').removeClass('active');
+    }
+    // Add active to nav-link if menu-item is active
+    if ($('.current_page_item').hasClass('active')) {
+        $('.current_page_item.active .nav-link').addClass('active');
+    }
+    if ($('.current-menu-item').hasClass('active')) {
+        $('.current-menu-item.active .nav-link').addClass('active');
+    }
+    if ($('.current-post-ancestor').hasClass('active')) {
+        $('.current-post-ancestor .nav-link').addClass('active');
+    }
+    if ($('.current_page_parent').hasClass('active')) {
+        $('.current_page_parent .nav-link').addClass('active');
+    }
+    // Remove active on search page
+    if ($('body').hasClass('search')) {
+        $('.nav-link').removeClass('active');
+    }
+    // Active menu item workaround End
+
+	
+	
+	
+	
+	
+	
 }); // jQuery End
 
 /*--------------------------------------------------------------

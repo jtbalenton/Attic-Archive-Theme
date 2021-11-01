@@ -17,7 +17,7 @@ class ACF_Child_Post_Field extends acf_field {
 		$this->label = __( "Child Post", 'acf_child_post_field' );
 		$this->category = 'layout';
 		$this->defaults = array(
-		    'post_type' => 'post',
+		    'post_type' => 'person','post','event','city','source','story',
 		    'fieldgroups' => array(),
 		    'sub_fields' => array(),
 		    'min' => 0,

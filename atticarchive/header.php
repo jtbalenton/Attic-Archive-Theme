@@ -23,6 +23,7 @@ y<?php
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_stylesheet_directory_uri();?>/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="<?php echo get_stylesheet_directory_uri();?>/img/favicon/site.webmanifest">
     <link rel="mask-icon" href="<?php echo get_stylesheet_directory_uri();?>/img/favicon/safari-pinned-tab.svg" color="#0d6efd">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <!-- Loads the internal WP jQuery -->
@@ -83,7 +84,7 @@ y<?php
                     </button>
 
 
-                    <div class="offcanvas expand-lg offcanvas-right flex-fill" data-bs-body="backdrop" tabindex="-1" id="offcanvasRight">
+                    <div class="offcanvas expand-lg offcanvas-end flex-fill" data-bs-body="backdrop" tabindex="-1" id="offcanvasRight">
                         <a href="javascript:void(0)" class="offcanvas-header expand-lg bg-light underline-0" data-bs-toggle="offcanvas">
                             <i class="fas fa-chevron-left"></i> <?php esc_html_e('Close menu' , 'bootscore'); ?>
                         </a>

@@ -21,14 +21,14 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 // Register Styles and Scripts
 function swiper_scripts() {
     
-    wp_enqueue_script( 'swiper-min-js', plugins_url( '/js/swiper-bundle.min.js' , __FILE__ ), array(), false, true );
+    wp_enqueue_script( 'swiper-min-js', my_plugins_url( '/js/swiper-bundle.min.js' , 'bs-swiper/main.php' ), array(), false, true );
     
-    wp_enqueue_script( 'swiper-init-js', plugins_url( '/js/swiper-init.js' , __FILE__ ), array(), false, true );
+    wp_enqueue_script( 'swiper-init-js', my_plugins_url( '/js/swiper-init.js' , 'bs-swiper/main.php' ), array(), false, true );
     
-    wp_register_style( 'swiper-min-css', plugins_url('css/swiper-bundle.min.css', __FILE__) );
+    wp_register_style( 'swiper-min-css', my_plugins_url('css/swiper-bundle.min.css', 'bs-swiper/main.php') );
     wp_enqueue_style( 'swiper-min-css' );
     
-    wp_register_style( 'swiper-style-css', plugins_url('css/swiper-style.css', __FILE__) );
+    wp_register_style( 'swiper-style-css', my_plugins_url('css/swiper-style.css', 'bs-swiper/main.php') );
     wp_enqueue_style( 'swiper-style-css' );
     
     }

@@ -1,0 +1,13 @@
+<?php
+$posts = get_field( 'person_birth' );
+if ( $posts ) : ?>
+  <?php foreach( $posts as $post) : ?>
+    <?php setup_postdata( $post ); ?>
+    
+  <?php endforeach; ?>
+  <?php wp_reset_postdata(); ?>
+<?php endif; ?>
+
+
+url=http://localhost/wpdev/wp-login.php&autofocus=loginpress_panel
+url=http://localhost/wpdev/wp-login.php&autofocus=%5Bpanel%5D=udb_login_customizer_panel

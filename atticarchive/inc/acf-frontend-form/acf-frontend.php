@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( function_exists( 'acff' ) ) {
-    acff()->set_basename( true, __FILE__ );
+    acff()->set_basename( true, 'acf-frontend-form/acf-frontend.php' );
 } else {
     
     if ( !function_exists( 'acff' ) ) {
@@ -72,9 +72,9 @@ if ( function_exists( 'acff' ) ) {
     
     define( 'ACFF_VERSION', '3.1.13' );
     define( 'ACFF_ASSETS_VERSION', '7.1.19' );
-    define( 'ACFF_PATH', __FILE__ );
-    define( 'ACFF_NAME', plugin_basename( __FILE__ ) );
-    define( 'ACFF_URL', plugin_dir_url( __FILE__ ) );
+    define( 'ACFF_PATH', 'acf-frontend-form/acf-frontend.php');
+    define( 'ACFF_NAME', plugin_basename( 'acf-frontend-form/acf-frontend.php' ) );
+    define( 'ACFF_URL', my_plugins_dir_url('acf-frontend-form/acf-frontend.php' ) );
     
     if ( !class_exists( 'ACF_Frontend' ) ) {
         /**
@@ -119,10 +119,8 @@ if ( function_exists( 'acff' ) ) {
              */
             public static function instance()
             {
-                if ( is_null( self::$_instance ) ) {
-                    self::$_instance = new self();
-                }
-                return self::$_instance;
+                
+                return new self();
             }
             
             /**
@@ -134,8 +132,8 @@ if ( function_exists( 'acff' ) ) {
              */
             public function __construct()
             {
-                add_action( 'init', [ $this, 'i18n' ] );
-                add_action( 'after_setup_theme', [ $this, 'init' ] );
+                add_action( 'wp_loaded', [ $this, 'i18n' ] );
+                add_action( 'init', [ $this, 'init' ] );
             }
             
             /**
@@ -151,7 +149,7 @@ if ( function_exists( 'acff' ) ) {
              */
             public function i18n()
             {
-                load_plugin_textdomain( 'acf-frontend-form-element', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+                load_plugin_textdomain( 'acf-frontend-form-element', false, dirname( plugin_basename( 'acf-frontend-form/acf-frontend.php') ) . '/languages/' );
             }
             
             /**
@@ -170,11 +168,7 @@ if ( function_exists( 'acff' ) ) {
             public function init()
             {
                 
-                if ( !class_exists( 'ACF' ) ) {
-                    add_action( 'admin_notices', [ $this, 'admin_notice_missing_acf_plugin' ] );
-                    return;
-                }
-                
+            
                 // Check for required PHP version
                 
                 if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
@@ -182,18 +176,8 @@ if ( function_exists( 'acff' ) ) {
                     return;
                 }
                 
-                
-                if ( !acff()->is__premium_only() ) {
-                    add_action( 'admin_notices', [ $this, 'admin_notice_get_pro' ] );
-                    $this->acff_notice_dismissed( 'pro_trial_dismiss' );
-                }
-                
-                add_filter(
-                    'plugin_row_meta',
-                    [ $this, 'acff_row_meta' ],
-                    10,
-                    2
-                );
+           
+               
                 $this->plugin_includes();
             }
             
